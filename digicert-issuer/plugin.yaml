@@ -15,7 +15,7 @@ spec:
   options:
     - name: provisioner.apiToken
       description: DigiCert cert-central API token
-      required: true
+      required: false
       type: secret
     - name: provisioner.organizationID
       description: The ID of the organization in DigiCert cert central.
