@@ -10,7 +10,7 @@ on:
 
 jobs:
   trigger:
-    runs-on: [ default ]
+    runs-on: [ self-hosted ]
 
     steps:
       - name: Trigger Workflow in Another Repository
