@@ -97,7 +97,8 @@ jobs:
           echo "All changed files: $ALL_CHANGED_FILES"
           chartName=$(yq .name "${{ matrix.chartDir }}/Chart.yaml")
           chartVersion=pr-${{ env.PR_NUMBER }}
-          sed -i 's/version: [0-9].[0-9].[0-9]/version: pr-${{ env.PR_NUMBER }}/' ./${{ matrix.chartDir }}/Chart.yaml
+          ls -la
+          sudo sed -i 's/version: [0-9].[0-9].[0-9]/version: pr-${{ env.PR_NUMBER }}/' ~/${{ matrix.chartDir }}/Chart.yaml
 
       - name: Push Charts to GHCR
         if: steps.changed-files.outputs.all_changed_files != ''
@@ -107,7 +108,7 @@ jobs:
           helm push ${PKG_NAME} oci://${{ env.REGISTRY }}/${{ github.repository }}/charts/
 
   cleanup-pr-tag:
-    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup')
+    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup') || github.event_name.types == 'closed'
     runs-on: [ default ]
     steps:
         - name: Delete PR container image tag
