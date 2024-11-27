@@ -91,7 +91,7 @@ jobs:
         run: |
           ls -latr $GITHUB_WORKSPACE/${{ matrix.chartDir }}
           sudo chmod 755 $GITHUB_WORKSPACE/${{ matrix.chartDir }}/Chart.yaml
-          sed -i 's/version: [0-9].[0-9].[0-9]/version: ${{ env.PR_NUMBER }}-pr/' ${{ matrix.chartDir }}/Chart.yaml
+          sed -i 's/version: \b([0-9]|[1-9][0-9]|100)\b.\b([0-9]|[1-9][0-9]|100)\b.\b([0-9]|[1-9][0-9]|100)\b/version: ${{ env.PR_NUMBER }}-pr/' ${{ matrix.chartDir }}/Chart.yaml
 
       - name: Push Charts to GHCR
         if: steps.changed-files.outputs.all_changed_files != ''
