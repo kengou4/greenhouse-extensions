@@ -4,6 +4,7 @@ name: Delete closed PR helm chart
   pull_request:
     types:
       - closed
+      - unlabeled
 
 env:
     PR_NUMBER: ${{ github.event.number }}
