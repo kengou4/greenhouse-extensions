@@ -7,11 +7,6 @@ on:
       - closed
       - unlabeled
 
-
-permissions:
-  contents: write
-  packages: write
-
 env:
   REGISTRY: ghcr.io
   ACTIONS_RUNNER_DEBUG: false
@@ -19,6 +14,9 @@ env:
 
 jobs:
   helm-release:
+    permissions:
+      packages: write
+      contents: read
     runs-on: [ default ]
     if: contains(github.event.pull_request.labels.*.name,'chart-build')
     strategy:
@@ -103,6 +101,8 @@ jobs:
           helm push ${PKG_NAME} oci://${{ env.REGISTRY }}/${{ github.repository }}/charts/
 
   cleanup-pr-tag:
+    permissions:
+      packages: write
     if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup') || github.event_name.types == 'closed'
     runs-on: [ default ]
     steps:
