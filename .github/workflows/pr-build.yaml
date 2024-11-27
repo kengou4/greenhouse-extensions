@@ -4,6 +4,8 @@ on:
   pull_request:
     types:
       - labeled
+      - closed
+      - unlabeled
 
 
 permissions:
@@ -104,3 +106,13 @@ jobs:
           PKG_NAME=`ls ${{ matrix.chartDir }}/*.tgz`
           helm push ${PKG_NAME} oci://${{ env.REGISTRY }}/${{ github.repository }}/charts/
 
+  cleanup-pr-tag:
+    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup')
+    runs-on: [ default ]
+    steps:
+        - name: Delete PR container image tag
+          uses: dataaxiom/ghcr-cleanup-action@v1
+          with:
+            tags: pr-${{ env.PR_NUMBER }}
+            package: ${{ github.repository }}/charts
+            token: ${{ secrets.GITHUB_TOKEN }}

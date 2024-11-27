@@ -1,10 +1,7 @@
 name: Delete closed PR helm chart
 
 "on":
-  pull_request:
-    types:
-      - closed
-      - unlabeled
+    workflow_dispatch:
 
 env:
     PR_NUMBER: ${{ github.event.number }}
