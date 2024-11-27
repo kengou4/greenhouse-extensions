@@ -89,6 +89,7 @@ jobs:
         if: steps.changed-files.outputs.all_changed_files != ''
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        shell: bash
         run: |
           # List all changed
           echo "All changed files: $ALL_CHANGED_FILES"
