@@ -11,7 +11,7 @@ env:
 
 jobs:
   cleanup-pr-tag:
-    if: contains(github.event.pull_request.labels.*.name,'chart-build')
+    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup')
     runs-on: [ default ]
     steps:
         - name: Delete PR container image tag
