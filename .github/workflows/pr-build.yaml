@@ -70,7 +70,6 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
             registry: ${{ env.REGISTRY }}
@@ -94,8 +93,7 @@ jobs:
           echo "All changed files: $ALL_CHANGED_FILES"
           chartName=$(yq .name "${{ matrix.chartDir }}/Chart.yaml")
           chartVersion=pr-${{ env.PR_NUMBER }}
-          echo "chart_version=${chartVersion}" 
-          sed -i 's/version: [0-9].[0-9].[0-9]/version: pr-${{ env.PR_NUMBER }}/' ${{ matrix.chartDir }}/Chart.yaml
+          sudo sed -i 's/version: [0-9].[0-9].[0-9]/version: pr-${{ env.PR_NUMBER }}/' ${{ matrix.chartDir }}/Chart.yaml
 
       - name: Push Charts to GHCR
         if: steps.changed-files.outputs.all_changed_files != ''
