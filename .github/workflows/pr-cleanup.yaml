@@ -1,0 +1,21 @@
+name: Delete closed PR helm chart
+
+"on":
+  pull_request:
+    types:
+      - closed
+
+env:
+    PR_NUMBER: ${{ github.event.number }}
+
+jobs:
+  cleanup-pr-tag:
+    if: contains(github.event.pull_request.labels.*.name,'chart-build')
+    runs-on: [ default ]
+    steps:
+        - name: Delete PR container image tag
+          uses: dataaxiom/ghcr-cleanup-action@v1
+          with:
+            tags: pr-${{ env.PR_NUMBER }}
+            package: ${{ github.repository }}/charts
+            token: ${{ secrets.GITHUB_TOKEN }}
