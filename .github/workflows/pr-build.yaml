@@ -18,6 +18,7 @@ env:
 jobs:
   helm-release:
     runs-on: [ default ]
+    if: contains(github.event.pull_request.labels.*.name,'chart-build')
     strategy:
       fail-fast: false
       matrix:
