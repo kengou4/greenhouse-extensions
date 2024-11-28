@@ -1,17 +1,14 @@
 name: Delete closed PR helm chart
 
 "on":
-  pull_request:
-    types:
-      - closed
-      - unlabeled
+    workflow_dispatch:
 
 env:
     PR_NUMBER: ${{ github.event.number }}
 
 jobs:
   cleanup-pr-tag:
-    if: contains(github.event.pull_request.labels.*.name,'chart-build')
+    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup')
     runs-on: [ default ]
     steps:
         - name: Delete PR container image tag

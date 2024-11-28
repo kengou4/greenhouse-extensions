@@ -4,11 +4,8 @@ on:
   pull_request:
     types:
       - labeled
-
-
-permissions:
-  contents: write
-  packages: write
+      - closed
+      - unlabeled
 
 env:
   REGISTRY: ghcr.io
@@ -17,7 +14,11 @@ env:
 
 jobs:
   helm-release:
+    permissions:
+      packages: write
+      contents: read
     runs-on: [ default ]
+    if: contains(github.event.pull_request.labels.*.name,'chart-build')
     strategy:
       fail-fast: false
       matrix:
@@ -68,38 +69,37 @@ jobs:
             check-latest: true
             token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log into registry ${{ env.REGISTRY }}
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
-        with:
-            registry: ${{ env.REGISTRY }}
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
         with:
           files: |
             ${{ matrix.chartDir }}/**
-    
-      - name: Check if Helm chart with same version already exists
-        id: check-chart
+
+      - name: Log into registry ${{ env.REGISTRY }}
         if: steps.changed-files.outputs.all_changed_files != ''
-        env:
-          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        run: |
-          # List all changed
-          echo "All changed files: $ALL_CHANGED_FILES"
-          chartName=$(yq .name "${{ matrix.chartDir }}/Chart.yaml")
-          chartVersion=pr-${{ env.PR_NUMBER }}
-          echo "chart_version=${chartVersion}" 
-          sed -i 's/version: [0-9].[0-9].[0-9]/version: pr-${{ env.PR_NUMBER }}/' ${{ matrix.chartDir }}/Chart.yaml
+        uses: docker/login-action@v3
+        with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Charts to GHCR
         if: steps.changed-files.outputs.all_changed_files != ''
         run: |
-          helm package ${{ matrix.chartDir }} -d ${{ matrix.chartDir }}
+          helm package ${{ matrix.chartDir }} -d ${{ matrix.chartDir }} --version ${{ env.PR_NUMBER }}-pr
           PKG_NAME=`ls ${{ matrix.chartDir }}/*.tgz`
           helm push ${PKG_NAME} oci://${{ env.REGISTRY }}/${{ github.repository }}/charts/
 
+  cleanup-pr-tag:
+    permissions:
+      packages: write
+    if: contains(github.event.pull_request.labels.*.name,'chart-build-cleanup') || github.event_name.types == 'closed'
+    runs-on: [ default ]
+    steps:
+        - name: Delete PR container image tag
+          uses: dataaxiom/ghcr-cleanup-action@v1
+          with:
+            tags: pr-${{ env.PR_NUMBER }}
+            package: ${{ github.repository }}/charts
+            token: ${{ secrets.GITHUB_TOKEN }}
