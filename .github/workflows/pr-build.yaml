@@ -84,17 +84,10 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check if Helm chart with same version already exists
-        id: check-chart
-        if: steps.changed-files.outputs.all_changed_files != ''  
-        shell: bash
-        run: |
-          sed -i 's/version: ([0-9]|[1-9])\b.\b([0-9]|[1-9][0-9]|900)\b.\b([0-9]|[1-9][0-9]|900)\b/version: ${{ env.PR_NUMBER }}-pr/' ${{ matrix.chartDir }}/Chart.yaml
-
       - name: Push Charts to GHCR
         if: steps.changed-files.outputs.all_changed_files != ''
         run: |
-          helm package ${{ matrix.chartDir }} -d ${{ matrix.chartDir }}
+          helm package ${{ matrix.chartDir }} -d ${{ matrix.chartDir }} --version ${{ env.PR_NUMBER }}-pr
           PKG_NAME=`ls ${{ matrix.chartDir }}/*.tgz`
           helm push ${PKG_NAME} oci://${{ env.REGISTRY }}/${{ github.repository }}/charts/
 
