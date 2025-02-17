@@ -3,7 +3,8 @@
   "assigneesFromCodeOwners": true,
   "forkProcessing": "enabled",
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    ":semanticCommits"
   ],
   "customManagers": [
     {
