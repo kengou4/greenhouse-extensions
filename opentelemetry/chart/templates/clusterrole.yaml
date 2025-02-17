@@ -7,9 +7,10 @@ metadata:
   name: logs-collector
   labels:
     app: logs-collector
+    {{- include "plugin.labels" . | nindent 4 }} 
 rules:
 - apiGroups: [""]
-  resources: ["pods", "namespaces", "nodes"]
+  resources: ["pods", "namespaces", "nodes", "events"]
   verbs: ["get", "watch", "list"]
 - apiGroups: ["apps"]
   resources: ["replicasets"]

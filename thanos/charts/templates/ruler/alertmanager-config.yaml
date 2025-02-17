@@ -1,0 +1,11 @@
+{{ if and .Values.thanos.ruler.alertmanagers.enabled .Values.thanos.ruler.enabled (not .Values.thanos.query.standalone) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: thanos-ruler-{{ include "release.name" . }}-alertmanager-config
+  labels:
+    thanos: {{ include "release.name" . }}
+data:
+  alertManagerConfig.yaml: |
+    {{ include "alertmanagers.config" . | indent 4 | b64enc }}
+{{ end }}

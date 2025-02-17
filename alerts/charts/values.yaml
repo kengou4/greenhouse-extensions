@@ -3,8 +3,30 @@ global:
   ##
   commonLabels: {}
 
+  ## Additional caCert to add to the CA bundle
+  ##
+  caCert: ""
+
+  ## common greenhouse values to use
+  ##
+  greenhouse:
+    # base domain of the greenhouse organisation
+    baseDomain:
+
 # kube-prometheus-stack configuration scoped to alerts
 alerts:
+
+  # Use certmanager to generate alertmanager certs
+  certManager:
+    enabled: true
+    # self-signed root certificate
+    rootCert:
+      duration: ""  # default to be 5y
+    admissionCert:
+      duration: ""  # default to be 1y
+    issuerRef: {}
+    #   name: "issuer"
+    #   kind: "ClusterIssuer"
 
   ## Create default rules for monitoring the cluster
   ##
@@ -44,6 +66,16 @@ alerts:
       prometheus: false
       prometheusOperator: false
       windows: false
+
+  ## Create curated dashboards for generic monitoring (e.g. monitoring Alertmanager)
+  ##
+  dashboards:
+    create: true
+
+    ## Label selectors for the Plutono dashboards to be picked up by Plutono.
+    plutonoSelectors:
+      - name: plutono-dashboard
+        value: '"true"'
 
   ## Flag to disable all the kubernetes component scrapers
   ##
@@ -113,6 +145,11 @@ alerts:
     ## Deploy alertmanager
     ##
     enabled: true
+
+    ## Enable access to Alertmanager disabled features.
+    ##
+    enableFeatures:
+      - receiver-name-in-metrics
 
     ## Alertmanager configuration directives
     ## ref: https://prometheus.io/docs/alerting/configuration/#configuration-file
@@ -244,3 +281,11 @@ alerts:
         #    matchers:
         #      - name: alertname
         #        matchType: "=~"
+
+testFramework:
+  enabled: true
+  image:
+    registry: ghcr.io
+    repository: cloudoperators/greenhouse-extensions-integration-test
+    tag: main
+  imagePullPolicy: IfNotPresent

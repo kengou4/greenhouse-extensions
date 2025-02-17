@@ -6,7 +6,7 @@ kind: PluginDefinition
 metadata:
   name: kube-monitoring
 spec:
-  version: 2.1.1
+  version: 2.10.0
   displayName: Kubernetes monitoring
   description: Native deployment and management of Prometheus along with Kubernetes cluster monitoring components.
   docMarkDownUrl: https://raw.githubusercontent.com/cloudoperators/greenhouse-extensions/main/kube-monitoring/README.md
@@ -14,8 +14,26 @@ spec:
   helmChart:
     name: kube-monitoring
     repository: oci://ghcr.io/cloudoperators/greenhouse-extensions/charts
-    version: 0.13.0
+    version: 0.23.0
   options:
+    - name: global.commonLabels
+      description: Labels to add to all resources. This can be used to add a support group or service to all alerts.
+      required: false
+      type: map
+    - name: kubeMonitoring.defaultRules.create
+      description: Whether to install the default alerting rules for self-monitoring Prometheus
+      default: true
+      type: bool
+      required: false
+    - name: kubeMonitoring.defaultRules.additionalRuleLabels
+      description: Additional labels that can be added to the Prometheus self-monitoring alerting rules.
+      required: false
+      type: map
+    - name: kubeMonitoring.dashboard.create
+      description: Whether to install the default dashboards for self-monitoring Prometheus
+      default: true
+      type: bool
+      required: false
     - name: kubeMonitoring.prometheus.ingress.enabled
       description: Ingress exposes prometheus outside the cluster
       default: false
@@ -57,11 +75,11 @@ spec:
       required: false
       type: secret
     - name: kubeMonitoring.prometheus.prometheusSpec.thanos.objectStorageConfig.existingSecret.name
-      description: 
+      description: The name of the Kubernetes Secret containing the Thanos object storage configuration.
       required: false
       type: string
     - name: kubeMonitoring.prometheus.prometheusSpec.thanos.objectStorageConfig.existingSecret.key
-      description: 
+      description: The key within the specified Kubernetes Secret that contains the Thanos object storage configuration.
       required: false
       type: string
     - name: kubeMonitoring.prometheus.service.additionalPorts
@@ -70,5 +88,10 @@ spec:
         port: 10901
         protocol: TCP
         targetPort: grpc
-      required: true
+      required: false
       type: list
+    - name: kubeMonitoring.prometheus.persesDatasource
+      description: Whether to create a datasource for Perses
+      default: true
+      required: false
+      type: bool

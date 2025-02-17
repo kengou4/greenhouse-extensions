@@ -117,9 +117,9 @@ plutono:
   testFramework:
     enabled: true
     image:
-      registry: "docker.io"
-      repository: bats/bats
-      tag: "1.11.0"
+      registry: "ghcr.io"
+      repository: cloudoperators/greenhouse-extensions-integration-test
+      tag: main
     imagePullPolicy: IfNotPresent
     securityContext: {}
     resources: {}
@@ -184,7 +184,7 @@ plutono:
     # -- The Docker registry
     registry: docker.io
     repository: curlimages/curl
-    tag: 7.85.0
+    tag: 8.10.1
     sha: ""
     pullPolicy: IfNotPresent
 
@@ -843,7 +843,7 @@ plutono:
       # -- The Docker registry
       registry: quay.io
       repository: kiwigrid/k8s-sidecar
-      tag: 1.27.5
+      tag: 1.30.0
       sha: ""
     imagePullPolicy: IfNotPresent
     resources: {}
