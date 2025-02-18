@@ -57,7 +57,7 @@
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "perses/helm-charts",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{/if}}",
       "extractVersionTemplate": "^perses-(?<version>.*)$"
     }
   ],
