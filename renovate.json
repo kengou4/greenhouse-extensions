@@ -62,7 +62,7 @@
     {
       "customType": "regex",
       "fileMatch": [
-        "^.*\\.plugindefinition.yaml$"
+        "^plugindefinition.yaml$"
       ],
       "matchStrings": [
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\S+?:\\S+\\s+\\S+:(?<currentValue>\\S+)"
