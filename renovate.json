@@ -57,8 +57,18 @@
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "perses/helm-charts",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{/if}}",
       "extractVersionTemplate": "^perses-(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^.*\\.plugindefinition.yaml$"
+      ],
+      "matchStrings": [
+        // for the version on the right part, ignoring the left
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\S+?:\\S+\\s+\\S+:(?<currentValue>\\S+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ],
   "packageRules": [

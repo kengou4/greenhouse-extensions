@@ -3,6 +3,7 @@ kind: PluginDefinition
 metadata:
   name: perses
 spec:
+  # renovate: datasource=github-tags depName=perses/helm-charts versioning=loose
   version: 0.3.0
   displayName: Perses
   description: "Perses is a dashboard tooling to visualize metrics and traces produced by observability tools such as Prometheus/Thanos/Jaeger"
