@@ -65,7 +65,6 @@
         "^.*\\.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        // for the version on the right part, ignoring the left
         "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\S+?:\\S+\\s+\\S+:(?<currentValue>\\S+)"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
