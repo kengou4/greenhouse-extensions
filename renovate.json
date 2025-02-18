@@ -53,21 +53,13 @@
         "^perses.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "spec:\\s*version\\s*\\:\\s*(?<versioning>.?(?:\\d+\\.){0,2}\\d+)\\s*displayName:\\s*.*\\s*description:\\s*.*\\s*docMarkDownUrl:\\s*.*\\s*icon:\\s*.*\\s*helmChart:\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        "spec:\\s*version\\s*\\:\\s*(?<versioning>.?(?:\\d+\\.){0,2}\\d+)\\s*displayName:\\s*.*\\s*description:\\s*.*\\s*docMarkDownUrl:\\s*.*\\s*icon:\\s*.*\\s*helmChart:\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)",
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\S+?:\\S+\\s+\\S+:(?<currentValue>\\S+)"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "perses/helm-charts",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
       "extractVersionTemplate": "^perses-(?<version>.*)$"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "^plugindefinition.yaml$"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s\\S+?:\\S+\\s+\\S+:(?<currentValue>\\S+)"
-      ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ],
   "packageRules": [
