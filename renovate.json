@@ -55,7 +55,6 @@
       "matchStrings": [
         "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
-      "matchStringsStrategy": "combination",
       "datasourceTemplate": "helm",
       "versioningTemplate": "semver"
     },
@@ -68,7 +67,6 @@
       "matchStrings": [
         "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
-      "matchStringsStrategy": "combination",
       "datasourceTemplate": "helm",
       "versioningTemplate": "semver"
     },
