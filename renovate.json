@@ -56,7 +56,7 @@
         "helmChart:\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
       "datasourceTemplate": "helm",
-      "depNameTemplate": "greenhouse-extensions/charts/kube-monitoring",
+      "depNameTemplate": "ghcr.io/cloudoperators/greenhouse-extensions/charts/kube-monitoring",
       "extractVersionTemplate": "^(?<version>.*)$"
     },
     {
