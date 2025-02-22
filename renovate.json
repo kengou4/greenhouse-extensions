@@ -53,9 +53,10 @@
         "^kube-monitoring.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<ociprotocol>.{6}?)(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
       "datasourceTemplate": "helm",
+      "matchStringsStrategy": "combination",
       "versioningTemplate": "semver"
     },
     {
@@ -65,9 +66,10 @@
         "^alerts.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<ociprotocol>.{6}?)(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
-      "datasourceTemplate": "helm",
+      "datasourceTemplate": "docker",
+      "matchStringsStrategy": "combination",
       "versioningTemplate": "semver"
     },
     {
