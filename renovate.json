@@ -77,8 +77,7 @@
         "^perses.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "name:\\s*.*\\s*spec:\\s*version:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)",
-        "helmChart:\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        ".*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "perses/helm-charts",
