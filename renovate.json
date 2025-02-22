@@ -53,11 +53,10 @@
         "^kube-monitoring.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        "# renovate depName=(?<depName>.*)\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
-      "datasourceTemplate": "docker",
-      "matchStringsStrategy": "combination",
-      "versioningTemplate": "semver"
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "helm"
     },
     {
       "customType": "regex",
@@ -66,10 +65,10 @@
         "^alerts.plugindefinition.yaml$"
       ],
       "matchStrings": [
-        "helmChart:\\s*name:\\s*(?<depName>.*?)\\s*repository:\\s*(?<registryUrl>.*?)\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
+        "# renovate depName=(?<depName>.*)\\s*name:\\s*.*\\s*repository:\\s*.*\\s*version\\s*\\:\\s*(?<currentValue>v?(?:\\d+\\.){0,2}\\d+)"
       ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "semver"
+      "datasourceTemplate": "helm",
+      "versioningTemplate": "helm"
     },
     {
       "customType": "regex",
