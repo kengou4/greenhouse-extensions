@@ -16,7 +16,7 @@ spec:
     # renovate depName=ghcr.io/cloudoperators/greenhouse-extensions/charts/alerts
     name: alerts
     repository: oci://ghcr.io/cloudoperators/greenhouse-extensions/charts
-    version: 0.19.3
+    version: 0.19.8
   uiApplication:
     name: supernova
     version: "latest"
