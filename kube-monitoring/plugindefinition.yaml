@@ -12,7 +12,7 @@ spec:
   docMarkDownUrl: https://raw.githubusercontent.com/cloudoperators/greenhouse-extensions/main/kube-monitoring/README.md
   icon: https://raw.githubusercontent.com/cloudoperators/greenhouse-extensions/main/kube-monitoring/logo.png
   helmChart:
-    # renovate depName=ghcr.io/cloudoperators/greenhouse-extensions/charts/kube-monitoring
+    # renovate depName=cloudoperators/greenhouse-extensions/charts/kube-monitoring repoUrl=oci://ghcr.io
     name: kube-monitoring
     repository: oci://ghcr.io/cloudoperators/greenhouse-extensions/charts
     version: 0.23.0
