@@ -73,6 +73,8 @@ jobs:
             chartName: thanos
           - chartDir: repo-guard/charts
             chartName: repo-guard
+          - chartDir: dynatrace/charts
+            chartName: dynatrace
 
 
     steps:
