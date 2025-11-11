@@ -1,6 +1,0 @@
-dependencies:
-- name: dynatrace-operator
-  repository: oci://public.ecr.aws/dynatrace
-  version: 1.6.3
-digest: sha256:9a8578298c57f9149751f3dd41b5d155855c4fa2635315b167b07f6e8814319c
-generated: "2025-11-10T23:21:27.828951+01:00"

@@ -8,13 +8,9 @@ maintainers:
 name: dynatrace-operator
 sources:
   - https://github.com/kengou4/greenhouse-extensions
-version: 1.6.5
+version: 1.0.10
 keywords:
   - operator
   - dynatrace
   - monitoring
-dependencies:
-  - name: dynatrace-operator
-    repository: oci://public.ecr.aws/dynatrace
-    version: 1.6.3
 
