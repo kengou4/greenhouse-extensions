@@ -1,0 +1,20 @@
+apiVersion: v2
+description: This chart deploys Dynatrace
+icon: https://assets.dynatrace.com/global/resources/Signet_Logo_RGB_CP_512x512px.png
+type: application
+kubeVersion: '>=1.19.0-0'
+maintainers:
+  - name: kengou4
+name: dynatrace-operator
+sources:
+  - https://github.com/kengou4/greenhouse-extensions
+version: 1.6.3
+keywords:
+  - operator
+  - dynatrace
+  - monitoring
+dependencies:
+  - name: dynatrace-operator
+    repository: oci://public.ecr.aws/dynatrace
+    version: 1.6.3
+

@@ -1,0 +1,71 @@
+# SPDX-FileCopyrightText: 2024 SAP SE or an SAP affiliate company and Greenhouse contributors
+# SPDX-License-Identifier: Apache-2.0
+
+apiVersion: greenhouse.sap/v1alpha1
+kind: ClusterPluginDefinition
+metadata:
+  name: dynatrace
+spec:
+  version: 1.6.3
+  displayName: Dynatrace Operator
+  description: Automated monitoring and management using the Dynatrace Operator
+  docMarkDownUrl: https://raw.githubusercontent.com/kengou4/greenhouse-extensions/main/dynatrace/README.md
+  helmChart:
+    name: dynatrace
+    repository: "oci://ghcr.io/kengou4/greenhouse-extensions/charts"
+    version: 1.6.3
+  options:
+    - name: global.clusterName
+      displayName: Cluster Name
+      description: Unique name for the cluster monitored by Dynatrace
+      type: string
+      required: true
+    - name: global.baseDomain
+      displayName: Dynatrace Base Domain
+      description: Base domain of your Dynatrace environment (e.g., dynatrace.com)
+      type: string
+      required: true
+      default: "apm.pmp.int.sap"
+    - name: global.projectID
+      displayName: Dynatrace Project ID
+      description: Project ID of your Dynatrace environment
+      type: string
+      required: true
+    - name: global.commonLabels
+      description: Labels to add to all resources.
+      type: map
+      required: false
+    - name: apiToken
+      displayName: Dynatrace API Token
+      description: API token for Dynatrace authentication
+      type: string
+      required: true
+    - name: dataIngestToken
+      displayName: Dynatrace Data Ingest Token
+      description: Data Ingest token for Dynatrace authentication
+      type: string
+      required: false
+    - name: dynakube.resources.requests.cpu
+      displayName: DynaKube CPU Request
+      description: CPU request for the DynaKube ActiveGate
+      type: string
+      required: false
+      default: "500m"
+    - name: dynakube.resources.requests.memory
+      displayName: DynaKube Memory Request
+      description: Memory request for the DynaKube ActiveGate
+      type: string
+      required: false
+      default: "512Mi"
+    - name: dynakube.resources.limits.cpu
+      displayName: DynaKube CPU Limit
+      description: CPU limit for the DynaKube ActiveGate
+      type: string
+      required: false
+      default: "1000m"
+    - name: dynakube.resources.limits.memory
+      displayName: DynaKube Memory Limit
+      description: Memory limit for the DynaKube ActiveGate
+      type: string
+      required: false 
+      default: "1.5Gi"
