@@ -21,3 +21,4 @@ https://{{ $baseDomain }}/e/{{ $projectID }}/api
 {{- else }}
 {{- printf "%s" .Release.Name  | trunc 63 | trimSuffix "-" -}}
 {{- end }}
+{{- end -}}
