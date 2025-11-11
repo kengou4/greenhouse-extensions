@@ -8,7 +8,7 @@ maintainers:
 name: dynatrace-operator
 sources:
   - https://github.com/kengou4/greenhouse-extensions
-version: 1.6.3
+version: 1.6.4
 keywords:
   - operator
   - dynatrace
