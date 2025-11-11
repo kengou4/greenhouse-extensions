@@ -23,6 +23,7 @@ on:
       - service-proxy/charts/1.0.0/service-proxy/**
       - thanos/charts/**
       - repo-guard/charts/**
+      - dynatrace/charts/**
 
 
 permissions:
