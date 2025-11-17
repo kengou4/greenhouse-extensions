@@ -1,0 +1,30 @@
+apiVersion: greenhouse.sap/v1alpha1
+kind: PluginPreset
+metadata:
+  annotations:
+    greenhouse.sap/prevent-deletion: "true"
+    greenhouse.sap/propagate-labels: greenhouse.sap/owned-by,greenhouse.sap/deployment-tool
+  labels:
+    greenhouse.sap/deployment-tool: flux
+    greenhouse.sap/owned-by: pmp-admin
+  name: kyverno
+  namespace: pmp
+spec:
+  clusterSelector:
+    matchExpressions:
+#    - key: greenhouse.sap/pluginpreset
+#      operator: In
+#      values:
+#      - "true"
+    - key: sap.it.pmp/policy-management
+      operator: In
+      values:
+      - "true"
+  deletionPolicy: Delete
+  plugin:
+    pluginDefinition: ""
+    pluginDefinitionRef:
+      kind: ClusterPluginDefinition
+      name: kyverno
+    releaseName: kyverno
+    releaseNamespace: kyverno

@@ -3,6 +3,10 @@ kind: PolicyException
 metadata:
   name: exempt-all-policies-for-kube-system
   namespace: kube-system
+  annotations:
+    "helm.sh/hook": post-install,pre-delete,post-upgrade
+    "helm.sh/hook-weight": "-5"
+    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   exceptions:
   - policyName: "*"
