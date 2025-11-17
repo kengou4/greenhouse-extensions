@@ -10,7 +10,7 @@ name: kyverno-policies
 sources:
   - https://github.com/kyverno/policies
   - https://github.com/kengou4/greenhouse-extensions
-version: 1.2.0
+version: 1.2.1
 keywords:
   - kubernetes
   - policy agent

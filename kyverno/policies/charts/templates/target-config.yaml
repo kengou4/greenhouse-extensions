@@ -1,0 +1,11 @@
+apiVersion: policyreporter.kyverno.io/v1alpha1
+kind: TargetConfig
+metadata:
+  name: filebeat-webhook
+spec:
+  skipExistingOnStartup: false
+  webhook:
+    skipTLS: false
+    webhook: 'http://filebeat.siem-data-agents.svc:8080/policy'
+    headers:
+      "Content-Type": "application/json"
