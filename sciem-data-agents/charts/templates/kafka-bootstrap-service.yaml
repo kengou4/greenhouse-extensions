@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-bootstrap-service
+  namespace: siem-data-agents
+spec:
+  type: ExternalName
+  externalName: {{KAFKA_BOOTSTRAP_SERVICE}}
+  selector:
+    siem: agent

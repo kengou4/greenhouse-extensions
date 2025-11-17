@@ -35,6 +35,10 @@ service:
 ingress:
   className: ""
   annotations:
+    dns.gardener.cloud/dnsnames: "*"
+    dns.gardener.cloud/ttl: "600"
+    dns.gardener.cloud/class: garden
+    cert.gardener.cloud/purpose: managed
     nginx.ingress.kubernetes.io/proxy-buffer-size: 32k
     kubernetes.io/tls-acme: "true"
     disco: "true"
