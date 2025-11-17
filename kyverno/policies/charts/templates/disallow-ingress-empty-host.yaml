@@ -3,9 +3,6 @@ kind: ClusterPolicy
 metadata:
   name: disallow-empty-ingress-host
   annotations:
-    "helm.sh/hook": post-install,pre-delete,post-upgrade
-    "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded
     policies.kyverno.io/title: Disallow empty Ingress host in CEL expressions
     policies.kyverno.io/category: Best Practices in CEL 
     policies.kyverno.io/minversion: 1.11.0

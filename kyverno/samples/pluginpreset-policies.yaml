@@ -7,7 +7,7 @@ metadata:
   labels:
     greenhouse.sap/deployment-tool: flux
     greenhouse.sap/owned-by: pmp-admin
-  name: kyverno
+  name: kyverno-policies
   namespace: pmp
 spec:
   clusterSelector:
@@ -26,5 +26,8 @@ spec:
     pluginDefinitionRef:
       kind: ClusterPluginDefinition
       name: kyverno-policies
-    releaseName: kyverno
+    releaseName: kyverno-policies
     releaseNamespace: kyverno
+  waitFor:
+    - pluginRef:
+        pluginPreset: kyverno

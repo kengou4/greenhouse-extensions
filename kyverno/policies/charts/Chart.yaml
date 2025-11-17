@@ -1,0 +1,18 @@
+apiVersion: v2
+description: Kubernetes Policies for Kyverno
+icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+home: https://kyverno.io/
+type: application
+kubeVersion: ">=1.25.0-0"
+maintainers:
+  - name: kengou4
+name: kyverno-policies
+sources:
+  - https://github.com/kyverno/policies
+  - https://github.com/kengou4/greenhouse-extensions
+version: 1.2.0
+keywords:
+  - kubernetes
+  - policy agent
+  - policy
+  - security

@@ -24,7 +24,8 @@ on:
       - thanos/charts/**
       - repo-guard/charts/**
       - dynatrace/charts/**
-      - kyverno/charts/**
+      - kyverno/kyverno/charts/**
+      - kyverno/policies/charts/**
 
 
 permissions:
@@ -76,8 +77,10 @@ jobs:
             chartName: repo-guard
           - chartDir: dynatrace/charts
             chartName: dynatrace
-          - chartDir: kyverno/charts
+          - chartDir: kyverno/kyverno/charts
             chartName: kyverno
+          - chartDir: kyverno/policies/charts
+            chartName: kyverno-policies
 
 
     steps:

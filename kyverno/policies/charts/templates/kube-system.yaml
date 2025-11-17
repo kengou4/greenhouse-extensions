@@ -1,0 +1,26 @@
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: exempt-all-policies-for-kube-system
+  namespace: kube-system
+  annotations:
+    policies.kyverno.io/title: Exempt all policies for kube-system namespace
+    policies.kyverno.io/category: Other in CEL 
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.11.0
+    kyverno.io/kubernetes-version: "1.26-1.27"
+    policies.kyverno.io/subject: Pods in kube-system
+    policies.kyverno.io/description: >-
+      This exception exempts all policies and rules for resources in the kube-system namespace.
+      This is useful for avoiding conflicts with critical system components that may not comply
+      with certain policies.
+spec:
+  exceptions:
+  - policyName: "*"
+    ruleNames:
+    - "*"
+  match:
+    any:
+    - resources:
+        namespaces:
+        - kube-system

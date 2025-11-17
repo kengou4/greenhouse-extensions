@@ -4,9 +4,6 @@ kind: ClusterPolicy
 metadata:
   name: require-labels
   annotations:
-    "helm.sh/hook": post-install,pre-delete,post-upgrade
-    "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded
     policies.kyverno.io/title: Require Labels
     policies.kyverno.io/category: Best Practices
     policies.kyverno.io/minversion: 1.6.0

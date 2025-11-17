@@ -1,0 +1,28 @@
+kyverno:
+  admissionController:
+    replicas: 2
+  backgroundController:
+    replicas: 2
+  cleanupController:
+    replicas: 2
+  reportsController:
+    replicas: 2
+  features:
+    policyExceptions:
+      enabled: true
+  config:
+    defaultRegistry: xyz.io/my-custom-registry
+
+reporter:
+  metrics:
+    enabled: true
+  ui:
+    enabled: false
+  plugin:
+    kyverno:
+      enabled: true
+  replicaCount: 2
+  podDisruptionBudget:
+    minAvailable: 1
+  target:
+    crd: true
