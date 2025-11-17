@@ -6,11 +6,11 @@ kind: ClusterPluginDefinition
 metadata:
   name: kyverno
 spec:
-  version: 1.0.0
+  version: 1.0.1
   displayName: Kyverno
   description: Policy management for Kubernetes.
   icon: https://raw.githubusercontent.com/cloudoperators/greenhouse-extensions/main/kyverno/logo.png
   helmChart:
     name: kyverno
     repository: oci://ghcr.io/kengou4/greenhouse-extensions/charts
-    version: 1.0.0
+    version: 1.0.1
