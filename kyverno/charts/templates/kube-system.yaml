@@ -1,0 +1,15 @@
+apiVersion: kyverno.io/v2
+kind: PolicyException
+metadata:
+  name: exempt-all-policies-for-kube-system
+  namespace: kube-system
+spec:
+  exceptions:
+  - policyName: "*"
+    ruleNames:
+    - "*"
+  match:
+    any:
+    - resources:
+        namespaces:
+        - kube-system

@@ -1,0 +1,24 @@
+apiVersion: v2
+description: Kubernetes Native Policy Management via Kyverno
+icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+home: https://kyverno.io/
+type: application
+kubeVersion: ">=1.25.0-0"
+maintainers:
+  - name: kengou4
+name: kyverno
+sources:
+  - https://github.com/kengou4/greenhouse-extensions
+version: 1.0.0
+keywords:
+  - kubernetes
+  - policy agent
+  - policy
+  - security
+dependencies:
+  - name: kyverno
+    version: 3.6.0
+    repository: "https://kyverno.github.io/kyverno/"
+  - name: policy-reporter
+    version: 3.5.0
+    repository: "https://kyverno.github.io/policy-reporter"
