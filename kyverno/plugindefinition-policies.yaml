@@ -4,7 +4,7 @@
 apiVersion: greenhouse.sap/v1alpha1
 kind: ClusterPluginDefinition
 metadata:
-  name: kyverno
+  name: kyverno-policies
 spec:
   version: 1.2.0
   displayName: Kyverno
