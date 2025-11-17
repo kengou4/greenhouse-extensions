@@ -8,7 +8,7 @@ metadata:
 spec:
   version: 1.2.0
   displayName: Kyverno
-  description: Policy management for Kubernetes.
+  description: Policies for Kyverno
   icon: https://raw.githubusercontent.com/cloudoperators/greenhouse-extensions/main/kyverno/logo.png
   helmChart:
     name: kyverno-policies
